@@ -20,7 +20,7 @@ function App() {
 
 
   function change(index){
-    setPhotos(c=>c.filter((_,i)=>i === index));
+
   }
   const [photos,setPhotos]=useState([
     {id: 0, alt: "Mak", filename: obraz1, category:1, downloads: 35},
@@ -40,11 +40,9 @@ function App() {
     <div>
       <h1>Kategorie zdjęć</h1>
       <div id="kat">
-        Kwiaty<input type="checkbox" id="Kwiaty" defaultChecked/>
+        Kwiaty<input type="checkbox" id="Kwiaty" defaultChecked />
         Zwierzęta<input type="checkbox" id="Zwierzeta" defaultChecked/>
         Samochody<input type="checkbox" id="Samochody" defaultChecked/>
-
-
       </div>
       
       {photos.map((photo,index)=><div id="container" key={index} >
