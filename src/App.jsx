@@ -57,7 +57,6 @@ function changeSamochody(){
         Zwierzęta<input type="checkbox" id="Zwierzeta" defaultChecked onChange={changeZwierzeta}/>
         Samochody<input type="checkbox" id="Samochody" defaultChecked onChange={changeSamochody}/>
       </div>
-      <p>{x}   {y}   {z}   </p>
       {photos.map((photo,index)=>
       <div id={x===1&&photo.category===1||y===1&photo.category===2||z===1&&photo.category===3?"container":""} key={index} >
         {x===1&&photo.category===1||y===1&photo.category===2||z===1&&photo.category===3? <img src={photo.filename} alt={photo.alt}/>:""  }
