@@ -17,11 +17,24 @@ import obraz12 from "./obraz12.jpg";
 
 
 function App() {
+  const [x,setX]=useState(1);
+  const [y,setY]=useState(1);
+  const [z,setZ]=useState(1);
 
 
-  function change(index){
+  function change(index) { 
+setPhotos(prevPhotos => prevPhotos.map(photo => photo.id === index ? {...photo,downloads:photo.downloads+1} : photo)); 
+} 
+function changeKwiaty(){
+  setX(x*-1);
+}
+function changeZwierzeta(){
+  setY(y*-1);
+}
+function changeSamochody(){
+  setZ(z*-1);
+}
 
-  }
   const [photos,setPhotos]=useState([
     {id: 0, alt: "Mak", filename: obraz1, category:1, downloads: 35},
     {id: 1, alt:"Bukiet", filename: obraz2, category: 1, downloads: 43},
@@ -40,15 +53,20 @@ function App() {
     <div>
       <h1>Kategorie zdjęć</h1>
       <div id="kat">
-        Kwiaty<input type="checkbox" id="Kwiaty" defaultChecked />
-        Zwierzęta<input type="checkbox" id="Zwierzeta" defaultChecked/>
-        Samochody<input type="checkbox" id="Samochody" defaultChecked/>
+        Kwiaty<input type="checkbox" id="Kwiaty" defaultChecked onChange={changeKwiaty}/>
+        Zwierzęta<input type="checkbox" id="Zwierzeta" defaultChecked onChange={changeZwierzeta}/>
+        Samochody<input type="checkbox" id="Samochody" defaultChecked onChange={changeSamochody}/>
       </div>
-      
-      {photos.map((photo,index)=><div id="container" key={index} >
-        <img src={photo.filename} alt={photo.alt}/><br/>
-        <h4>Liczba pobrań {photo.downloads}</h4><br/>
-        <button onClick={()=>change(index)}>Pobierz</button></div>)}
+      <p>{x}   {y}   {z}   </p>
+      {photos.map((photo,index)=>
+      <div id={x===1&&photo.category===1||y===1&photo.category===2||z===1&&photo.category===3?"container":""} key={index} >
+        {x===1&&photo.category===1||y===1&photo.category===2||z===1&&photo.category===3? <img src={photo.filename} alt={photo.alt}/>:""  }
+        {x===1&&photo.category===1||y===1&photo.category===2||z===1&&photo.category===3?<br/>:""}
+        {x===1&&photo.category===1||y===1&photo.category===2||z===1&&photo.category===3?<h4>Liczba pobrań {photo.downloads}</h4>:""}
+        {x===1&&photo.category===1||y===1&photo.category===2||z===1&&photo.category===3?<br/>:""}
+        {x===1&&photo.category===1||y===1&photo.category===2||z===1&&photo.category===3?<button onClick={()=>change(index)}>Pobierz</button>:""}
+      </div>  
+      )}
     </div>
     </>
   )
